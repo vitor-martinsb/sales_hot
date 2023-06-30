@@ -1,4 +1,6 @@
 import mysql.connector
+import os
+import shutil
 import pandas as pd
 
 
@@ -28,17 +30,25 @@ class read_data_SQL:
         df = pd.DataFrame(rows, columns=columns)
 
         if save_csv:
-            df.to_csv('data/sales_data.csv')
-
+            try:
+                df.to_csv('data/sales_data.csv')
+            except:
+                try:
+                    shutil.rmtree('data')
+                except:
+                    os.mkdir('data')
+                    df.to_csv('data/sales_data.csv')
+        print('\n*** FINISH ***')
         cursor.close()
         self.cnx.close()
+        print('\n*** Connection close ***')
 
         return df
 
-if __name__ == '__main__':
-    print('\n Begin... \n')
+# if __name__ == '__main__':
+#     print('\n Begin... \n')
 
-    SQL_conn = read_data_SQL()
-    df = SQL_conn.read_table(save_csv=False)
+#     SQL_conn = read_data_SQL()
+#     df = SQL_conn.read_table(save_csv=False)
 
-    print('\n Finish! \n')
+#     print('\n Finish! \n')
