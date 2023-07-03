@@ -296,11 +296,11 @@ class read_data:
             plt.tight_layout()
             plt.show()
 
-if __name__ == '__main__':
-    rd = read_data()
-    rd.val_faturation()
-    rd.seg_client()
-    rd.seg_prod()
-    rd.feature_analysis()
+# if __name__ == '__main__':
+#     rd = read_data()
+#     rd.val_faturation()
+#     rd.seg_client()
+#     rd.seg_prod()
+#     rd.feature_analysis()
     
 
